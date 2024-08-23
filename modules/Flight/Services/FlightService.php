@@ -97,102 +97,102 @@ class FlightService extends BaseService
                 $flightData = $response->json()['searchResult']['tripInfos'];
                 // return $flightData;
                 return $flightData;
-                $filteredFlights = [];
-                if (array_key_exists('RETURN', $flightData)) {
-                    // $list    =  $flightData['ONWARD'];
-                    // $return  =  $flightData['RETURN'];
-                    // $lists   = $this->pairFlights($list,$return);
-                    // return $list;
-                    return $flightData;
+                // $filteredFlights = [];
+                // if (array_key_exists('RETURN', $flightData)) {
+                //     // $list    =  $flightData['ONWARD'];
+                //     // $return  =  $flightData['RETURN'];
+                //     // $lists   = $this->pairFlights($list,$return);
+                //     // return $list;
+                //     return $flightData;
 
-                    $filteredComboFlights = [];
-                    $successfulResponse = false;
-                    foreach ($lists as $list) {
-                        $excludeList = false;
-                        $idArray = [];
+                //     $filteredComboFlights = [];
+                //     $successfulResponse = false;
+                //     foreach ($lists as $list) {
+                //         $excludeList = false;
+                //         $idArray = [];
 
-                        foreach ($list as $element) {
-                            $currentId = $element['totalPriceList'][0]['id'];
-                            $idArray[] = $currentId;
-                        }
+                //         foreach ($list as $element) {
+                //             $currentId = $element['totalPriceList'][0]['id'];
+                //             $idArray[] = $currentId;
+                //         }
 
-                        $id = implode(',', $idArray);
-                        $id = strpos($id, ',') !== false ? explode(',', $id) : [$id];
+                //         $id = implode(',', $idArray);
+                //         $id = strpos($id, ',') !== false ? explode(',', $id) : [$id];
 
-                        $reviewResponse = Http::withHeaders(['apikey' => $this->apiToken])
-                            ->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
+                //         $reviewResponse = Http::withHeaders(['apikey' => $this->apiToken])
+                //             ->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
 
-                        if ($reviewResponse->successful()) {
-                            $successfulResponse = true;
-                        } else {
-                            $excludeList = true;
-                        }
+                //         if ($reviewResponse->successful()) {
+                //             $successfulResponse = true;
+                //         } else {
+                //             $excludeList = true;
+                //         }
 
-                        if (!$excludeList) {
-                            $filteredComboFlights[] = $list;
-                        }
-                    }
-                    if (!empty($filteredComboFlights)) {
-                        $filteredFlights['COMBO'] = $filteredComboFlights;
-                    }
-                }
-                // Handle COMBO flights
-                if (array_key_exists('COMBO', $flightData)) {
-                    // dd($flightData);
-                    $filteredComboFlights = []; // Temporary array for valid COMBO flights
-                    $lists = $this->pairComboFlights($flightData['COMBO']);
-                    // $filteredFlights['COMBO'] = $lists;
-                    // dd($lists);
-                    // return $filteredFlights;
-                    // return $filteredFlights;
+                //         if (!$excludeList) {
+                //             $filteredComboFlights[] = $list;
+                //         }
+                //     }
+                //     if (!empty($filteredComboFlights)) {
+                //         $filteredFlights['COMBO'] = $filteredComboFlights;
+                //     }
+                // }
+                // // Handle COMBO flights
+                // if (array_key_exists('COMBO', $flightData)) {
+                //     // dd($flightData);
+                //     $filteredComboFlights = []; // Temporary array for valid COMBO flights
+                //     $lists = $this->pairComboFlights($flightData['COMBO']);
+                //     // $filteredFlights['COMBO'] = $lists;
+                //     // dd($lists);
+                //     // return $filteredFlights;
+                //     // return $filteredFlights;
 
-                    $successfulResponse = false; // Flag to track if there's a successful response
+                //     $successfulResponse = false; // Flag to track if there's a successful response
 
-                    foreach ($lists as $list) {
-                        $excludeList = false;
-                        $idArray = [];
+                //     foreach ($lists as $list) {
+                //         $excludeList = false;
+                //         $idArray = [];
 
-                        foreach ($list as $element) {
-                            $currentId = $element['totalPriceList'][0]['id'];
-                            $idArray[] = $currentId;
-                        }
+                //         foreach ($list as $element) {
+                //             $currentId = $element['totalPriceList'][0]['id'];
+                //             $idArray[] = $currentId;
+                //         }
 
-                        $id = implode(',', $idArray);
-                        $id = strpos($id, ',') !== false ? explode(',', $id) : [$id];
+                //         $id = implode(',', $idArray);
+                //         $id = strpos($id, ',') !== false ? explode(',', $id) : [$id];
 
-                        $reviewResponse = Http::withHeaders(['apikey' => $this->apiToken])
-                            ->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
+                //         $reviewResponse = Http::withHeaders(['apikey' => $this->apiToken])
+                //             ->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
 
-                        if ($reviewResponse->successful()) {
-                            $successfulResponse = true;
-                        } else {
-                            $excludeList = true;
-                        }
+                //         if ($reviewResponse->successful()) {
+                //             $successfulResponse = true;
+                //         } else {
+                //             $excludeList = true;
+                //         }
 
-                        if (!$excludeList) {
-                            $filteredComboFlights[] = $list;
-                        }
-                    }
-                    if (!empty($filteredComboFlights)) {
-                        $filteredFlights['COMBO'] = $filteredComboFlights;
-                    }
-                }
+                //         if (!$excludeList) {
+                //             $filteredComboFlights[] = $list;
+                //         }
+                //     }
+                //     if (!empty($filteredComboFlights)) {
+                //         $filteredFlights['COMBO'] = $filteredComboFlights;
+                //     }
+                // }
 
-                // Handle ONWARD flights
-                if (array_key_exists('ONWARD', $flightData)) {
-                    foreach ($flightData['ONWARD'] as $onward) {
-                        $id = $onward['totalPriceList'][0]['id'];
-                        $id = strpos($id, ',') !== false ? explode(',', $id) : [$id];
+                // // Handle ONWARD flights
+                // if (array_key_exists('ONWARD', $flightData)) {
+                //     foreach ($flightData['ONWARD'] as $onward) {
+                //         $id = $onward['totalPriceList'][0]['id'];
+                //         $id = strpos($id, ',') !== false ? explode(',', $id) : [$id];
 
-                        $reviewResponse = Http::withHeaders(['apikey' => $this->apiToken])
-                            ->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
+                //         $reviewResponse = Http::withHeaders(['apikey' => $this->apiToken])
+                //             ->post($this->getEndpoint('review', 'fms'), ['priceIds' => $id]);
 
-                        if ($reviewResponse->successful()) {
-                            $filteredFlights['ONWARD'][] = $onward;
-                        }
-                    }
-                }
-                return $filteredFlights;
+                //         if ($reviewResponse->successful()) {
+                //             $filteredFlights['ONWARD'][] = $onward;
+                //         }
+                //     }
+                // }
+                // return $filteredFlights;
             } else {
                 // Log error if the initial search API call fails
                 $this->generateEmailLog('air-search-all', $this->apiType, $response->status(), $response->body());

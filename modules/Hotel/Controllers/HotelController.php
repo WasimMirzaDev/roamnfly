@@ -9,6 +9,7 @@ use Modules\Location\Models\Location;
 use Modules\Location\Models\LocationCategory;
 use Modules\Review\Models\Review;
 use Modules\Core\Models\Attributes;
+use Illuminate\Support\Facades\Cache;
 use DB;
 use Auth;
 
@@ -149,6 +150,7 @@ class HotelController extends Controller
 
     public function checkAvailability(){
         $hotel_id = \request('hotel_id');
+        $rooms_id = \request('rooms_id');
         if(\request()->input('firstLoad') == "false") {
             $rules = [
                 'hotel_id'   => 'required',
@@ -187,7 +189,7 @@ class HotelController extends Controller
         //         }
         //     }
         // }
-        $rooms = $this->hotelService->checkRoomAvailability($hotel_id);
+        $rooms = $this->hotelService->checkRoomAvailability($hotel_id,$rooms_id);
         // dd($rooms);
         
         if(!$rooms)
@@ -199,6 +201,20 @@ class HotelController extends Controller
             'rooms'=>$rooms
         ]);
     }
+
+
+    public function getHotelRoomsId(Request $request)
+{
+    $hotelId = $request->get('hotel_id');
+    $cachedData = Cache::get('hotel_' . $hotelId);
+
+    if ($cachedData && isset($cachedData['ops'])) {
+        return response()->json(['ops' => $cachedData['ops']]);
+    } else {
+        return response()->json(['ops' => null], 404);
+    }
+}
+
     
     public function addToCart(Request $request)
     {

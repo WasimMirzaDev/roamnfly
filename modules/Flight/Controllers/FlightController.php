@@ -169,7 +169,7 @@ class FlightController extends Controller
                 $list    = $this->flightService->pairFlights($list,$return);
             }
             if(isset($query['COMBO'])){
-                $list   = $query['COMBO'];
+                $list   = $this->flightService->pairComboFlights($query['COMBO']);
             }
             $list    = $this->flightService->paginate($request, $list ?? [], $limit);
             $view    ='Flight::frontend.returnSearch';

@@ -130,20 +130,20 @@ class HotelService extends BaseService
     }
 
     // this will return hotel review/booking Id
-    public function checkRoomAvailability($hotelId)
+    public function checkRoomAvailability($hotelId,$rooms_id)
     {
         // ini_set('max_execution_time', '300');
         $this->clearRoomCache();
         $allRooms = [];
         if($hotelId)
         {
-            $roomIds = $this->getHotelDetailFromCache($hotelId)['ops'] ?? '';
+            // $roomIds = $this->getHotelDetailFromCache($hotelId)['ops'] ?? '';
 
             // $roomIds = array_slice($roomIds, 0, 1);
             // dd($roomIds);
-            if($roomIds)
+            if($rooms_id)
             {
-                foreach($roomIds as $roomId)
+                foreach($rooms_id as $roomId)
                 {
                     if($roomId['id'])
                     {

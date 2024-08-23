@@ -5,6 +5,7 @@ Route::group(['prefix'=>config('hotel.hotel_route_prefix')],function(){
     Route::get('/','HotelController@index')->name('hotel.search'); // Search
     Route::get('/{slug}','HotelController@detail')->name('hotel.detail');// Detail
     Route::post('/addToCart','HotelController@addToCart');
+
 });
 
 Route::group(['prefix'=>'user/'.config('hotel.hotel_route_prefix'),'middleware' => ['auth','verified']],function(){
@@ -41,3 +42,6 @@ Route::group(['prefix'=>'user/'.config('hotel.hotel_route_prefix')],function(){
 });
 
 Route::post(config('hotel.hotel_route_prefix').'/checkAvailability','HotelController@checkAvailability')->name('hotel.checkAvailability');
+// Route::get('/get-hotel-rooms-id', 'HotelController@getHotelRoomsId');
+// Route::get(config('hotel.hotel_route_prefix').'/checkAvailability','HotelController@getHotelRoomsId');
+Route::get('/get-hotel-rooms-id', 'HotelController@getHotelRoomsId')->name('get.hotel.rooms.id');

@@ -22,8 +22,7 @@
 								</div>
 							</div>
 							<div class="col-md-3">
-								<h6 class="text-left" v-if="key === 0">Depart:</h6>
-								<h6 class="text-left" v-if="key === 1">Return:</h6>
+								<h6 class="text-left" >Depart:</h6>
 								<div class="d-flex align-items-start">
 									<div class="mr-15">
 										<i class="icofont-airplane text-22 text-dark-4"></i>
