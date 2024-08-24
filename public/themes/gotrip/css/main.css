@@ -1,3 +1,19 @@
+.go-tabs {
+  width: 928px;
+  margin: 0 auto;
+  /* padding: 10px 0px; */
+  border-radius: 10px;
+}
+.image-wrapper-go {
+  height: 40px;
+  width: 72px;
+  display: flex;
+  justify-content: center;
+}
+.custom-header{
+  background: transparent !important;
+}
+
 .ratio {
   position: relative;
   display: block;
@@ -1930,7 +1946,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .masthead.-type-1 {
   position: relative;
-  padding-top: 330px;
+  padding-top: 100px;
   padding-bottom: 210px;
 }
 
