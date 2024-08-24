@@ -26,6 +26,7 @@
             children:0,
             allEvents:[],
             rooms:[],
+            rooms_id:[],
             onLoadAvailability:false,
             firstLoad:true,
             i18n:[],
@@ -292,7 +293,6 @@
                     this.message.content = bravo_booking_i18n.no_guest_select;
                     return false;
                 }
-
                 return true;
             },
             addPersonType(type){
@@ -321,45 +321,92 @@
 				}
                 // this.handleTotalPrice();
             },
-			checkAvailability:function () {
-                var me  = this;
-                if(!this.firstLoad){
-                    if(!this.start_date || !this.start_date){
+            checkAvailability: function () {
+                var me = this;
+                if (!this.firstLoad) {
+                    if (!this.start_date || !this.end_date) {
                         bookingCoreApp.showError(this.i18n.date_required);
                         return;
                     }
                 }
+            
+                let hotel_id = this.id;
                 this.onLoadAvailability = true;
+                
                 $.ajax({
-                    url:bookingCore.module.hotel+'/checkAvailability',
-                    data:{
-                        hotel_id:this.id,
-                        start_date:this.start_date,
-                        end_date:this.end_date,
-						firstLoad:me.firstLoad,
-                        adults:this.adults,
-                        children:this.children,
+                    url: '/get-hotel-rooms-id',
+                    type: 'GET',
+                    data: {
+                        hotel_id: hotel_id
                     },
-                    method:'post',
-                    success:function (json) {
+                    success: function(response) {
+                        me.rooms_id = response['ops'];
+                        console.log('RoomIDs:', me.rooms_id);
+            
+                        me.checkAvailabilityInBatches(0); // Start with the first batch
+                    },
+                    error: function(error) {
                         me.onLoadAvailability = false;
+                        bookingCoreApp.showAjaxError(error);
+                    }
+                });
+            },
+            checkAvailabilityInBatches: function (startIndex) {
+                var me = this;
+                var batchSize = 2; // Maximum number of rooms_id to send at once
+                var roomsBatch = this.rooms_id.slice(startIndex, startIndex + batchSize);
+            
+                if (roomsBatch.length === 0) {
+                    // No more rooms to process
+                    me.onLoadAvailability = false;
+                    return;
+                }
+            
+                $.ajax({
+                    url: bookingCore.module.hotel + '/checkAvailability',
+                    data: {
+                        hotel_id: me.id,
+                        rooms_id: roomsBatch, // Send the current batch of rooms_id
+                        start_date: me.start_date,
+                        end_date: me.end_date,
+                        firstLoad: me.firstLoad,
+                        adults: me.adults,
+                        children: me.children,
+                    },
+                    method: 'post',
+                    success: function(json) {
                         me.firstLoad = false;
-                        if(json.rooms){
-                            me.rooms = json.rooms;
+            
+                        if (json.rooms) {
+                            me.rooms = me.rooms.concat(json.rooms); // Append the result to the existing rooms array
                             me.$nextTick(function () {
                                 me.initJs();
-                            })
+                            });
                         }
-                        if(json.message){
-                            bookingCoreApp.showAjaxMessage(json);
+            
+                        // Determine if this is the last batch
+                        var isLastBatch = (startIndex + batchSize) >= me.rooms_id.length;
+            
+                        if (isLastBatch) {
+                            // Only show messages or errors after the last batch
+                            if (json.message) {
+                                bookingCoreApp.showAjaxMessage(json);
+                            }
                         }
+            
+                        // Process the next batch
+                        me.checkAvailabilityInBatches(startIndex + batchSize);
                     },
-                    error:function (e) {
-                        me.firstLoad = false;
-                        bookingCoreApp.showAjaxError(e);
+                    error: function(e) {
+                        // Display the error only after the last batch
+                        var isLastBatch = (startIndex + batchSize) >= me.rooms_id.length;
+                        if (isLastBatch) {
+                            me.onLoadAvailability = false;
+                            bookingCoreApp.showAjaxError(e);
+                        }
                     }
-                })
-			},
+                });
+            },            
             doSubmit:function (e) {
                 e.preventDefault();
                 if(this.onSubmit) return false;

@@ -111,4 +111,10 @@
     </div>
 </div>
 @include('Hotel::frontend.layouts.details.hotel-room-list')
+<br>
+<br>
+<center>
+    <i v-show="onLoadAvailability" class="fa fa-spinner fa-spin" style="font-size: 100px;"></i>
+</center>
+
 @include("Booking::frontend.global.enquiry-form",['service_type'=>'hotel'])

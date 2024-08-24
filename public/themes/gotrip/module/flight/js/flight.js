@@ -226,7 +226,7 @@
         methods: {
             openModal(flightId) {
                 console.log("Opening modal for flight ID:", flightId);
-                this.modal.show();
+                $('#flightFormBookModal').modal('show');
                 this.id = flightId;
                 if (this.onSubmit) {
                     return false;
@@ -997,8 +997,6 @@
                 }
                 return total;
             }
-
-            
         },
         mounted() {
             try {

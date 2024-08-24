@@ -1,5 +1,6 @@
 <div class="room-available pt-30 hotel_rooms_form">
-    <div class="hotel_list_rooms" :class="{'loading':onLoadAvailability}">
+    {{-- :class="{'loading':onLoadAvailability}" --}}
+    <div class="hotel_list_rooms" >
         <div class="row">
             <div class="col-12">
                 <div class="start_room_sticky"></div>
