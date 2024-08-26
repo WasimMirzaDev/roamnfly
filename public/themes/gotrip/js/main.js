@@ -86,9 +86,10 @@ function liveSearch() {
     results.querySelectorAll('.js-search-option').forEach(option => {
       const title = option.querySelector('.js-search-option-target').innerHTML;
       const id = option.getAttribute('data-id');
-
+      
       option.addEventListener('click', () => {
-        search.value = title;
+        let lastPart = title.split('|').pop().trim();
+        search.value = lastPart;
         search_id.value = id;
         el.querySelector('.js-popup-window').classList.remove('-is-active')
       })

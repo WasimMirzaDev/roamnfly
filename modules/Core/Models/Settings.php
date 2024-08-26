@@ -26,15 +26,16 @@ class Settings extends BaseModel
         return $res;
     }
 
-    public static function item($item, $default = false)
-    {
-        $value = Cache::rememberForever('setting_' . $item, function () use ($item ,$default) {
-            $val = Settings::where('name', $item)->first();
-            return $val?$val['val']:'';
-        });
+public static function item($item, $default = false)
+{
+    // Directly query the database to get the setting value without caching
+    $val = Settings::where('name', $item)->first();
+    $value = $val ? $val['val'] : '';
 
-        return (empty($value) and strlen($value)===0)?$default:$value;
-    }
+    // Return the value or the default if the value is empty
+    return (empty($value) && strlen($value) === 0) ? $default : $value;
+}
+
 
     public static function store($key,$data){
 

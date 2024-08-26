@@ -72,7 +72,7 @@ class FlightSeeder extends Seeder
                 ],
                 [
                     'name'  => 'flight_search_fields',
-                    'val'   => '[{"title":"From where","title_ja":null,"title_egy":null,"field":"from_where","size":"3","position":"1"},{"title":"To where","title_ja":null,"title_egy":null,"field":"to_where","size":"3","position":"2"},{"title":"Depart","title_ja":null,"title_egy":null,"field":"date","size":"3","position":"3"},{"title":"Travelers","title_ja":null,"title_egy":null,"field":"seat_type","size":"3","position":"4"}]',
+                    'val'   => '[{"title":"From where","title_ja":null,"title_egy":null,"field":"from_where","size":"3","position":"1"},{"title":"To where","title_ja":null,"title_egy":null,"field":"to_where","size":"3","position":"2"},{"title":"Depart","title_ja":null,"title_egy":null,"field":"date","size":"2","position":"3"},{"title":"Travelers","title_ja":null,"title_egy":null,"field":"seat_type","size":"2","position":"4"}]',
                     'group' => 'flight'
                 ]
             ]);

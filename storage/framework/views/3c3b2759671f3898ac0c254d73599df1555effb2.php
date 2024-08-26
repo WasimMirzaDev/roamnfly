@@ -25,10 +25,12 @@
         $button_classes = ' -dark-1 py-15 col-12 bg-blue-1 h-60 text-white w-100 rounded-4';
     }
 ?>
-<form action="<?php echo e(route('flight.search')); ?>"
-    class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classes); ?>" method="get">
+<form  action="<?php echo e(route('flight.search')); ?>"
+class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classes); ?>" method="get">
+
     <?php
         $flight_search_fields = setting_item_array('flight_search_fields');
+        // dd($flight_search_fields);
         $flight_search_fields = array_values(
             \Illuminate\Support\Arr::sort($flight_search_fields, function ($value) {
                 return $value['position'] ?? 0;
@@ -55,11 +57,11 @@
 
     <div class="row" id="multiCityDivContainer">
         <div class="col-md-12">
-            <div class="field-items d-block">
+            <div class="field-items">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0 adjust-border">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-lg-<?php echo e($field['size'] ?? '6'); ?> align-self-center px-10 lg:py-5 lg:px-0">
+                            <div class="col-lg-<?php echo e($field['size']); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                 <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                                 <?php switch($field['field']):
                                     case ('date'): ?>

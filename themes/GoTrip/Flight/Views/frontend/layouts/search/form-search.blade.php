@@ -26,9 +26,11 @@
     }
 @endphp
 <form  action="{{ route('flight.search') }}"
-    class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" method="get">
+class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" method="get">
+{{-- @php dd($field) @endphp --}}
     @php
         $flight_search_fields = setting_item_array('flight_search_fields');
+        // dd($flight_search_fields);
         $flight_search_fields = array_values(
             \Illuminate\Support\Arr::sort($flight_search_fields, function ($value) {
                 return $value['position'] ?? 0;
@@ -59,7 +61,7 @@
                 @if (!empty($flight_search_fields))
                     <div class="row w-100 m-0 adjust-border">
                         @foreach ($flight_search_fields as $field)
-                            <div class="col-lg-{{ $field['size'] ?? '6' }} align-self-center px-10 lg:py-5 lg:px-0">
+                            <div class="col-lg-{{ $field['size'] }} align-self-center px-10 lg:py-5 lg:px-0">
                                 @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                                 @switch($field['field'])
                                     @case ('date')

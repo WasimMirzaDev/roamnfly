@@ -16,18 +16,17 @@ define( 'YEAR_IN_SECONDS', 365 * DAY_IN_SECONDS );
 function setting_item($item,$default = '',$isArray = false){
 
     $res = Settings::item($item,$default);
-
+    
     if($isArray and !is_array($res)){
         $res = (array) json_decode($res,true);
     }
 
+    
     return $res;
 
 }
 function setting_item_array($item,$default = ''){
-
     return setting_item($item,$default,true);
-
 }
 
 function setting_item_with_lang($item,$locale = '',$default = '',$withOrigin = true){
