@@ -28,7 +28,7 @@ $traverse($list_location);
             <input autocomplete="off" type="search" placeholder="{{ __('Where are you going?') }}" class="js-search js-dd-focus" value="{{ $location_name ?? '' }}" />
         </div>
     </div>
-    <div class="searchMenu-loc__field shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
+    <div class="searchMenu-loc__fieldv shadow-2 js-popup-window" data-x-dd="searchMenu-loc" data-x-dd-toggle="-is-active">
         <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
             <div class="y-gap-5 js-results">
                 @foreach($list_json as $location)

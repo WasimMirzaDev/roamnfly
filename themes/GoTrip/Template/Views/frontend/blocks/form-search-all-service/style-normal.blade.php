@@ -16,6 +16,51 @@
 .tabs__button {
     font-size:14px;
 }
+.gotrip_form_search {
+    width: 1200px !important;
+    height:315px;
+    border-radius:15px;
+    max-width:1110px;
+}
+.button-item {
+    position: absolute;
+    left: 40%;
+    top: 92%;
+    bottom: 0px;
+    z-index: 9;
+}
+.mainSearch__submit {
+    height:44px !important;
+}
+.bravo_wrap .gotrip_form_search .field-items {
+    width: 1080px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    border-radius: 8px;
+    /* box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%); */
+    padding: 65px 20px 0;
+}
+.adjust-border{ 
+    border:1px solid #e7e7e7;
+    border-radius:10px;
+    height:80px;
+}
+.react-autosuggest__input {
+    background: #ffffff;
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+    padding: 11px 10px 11px 30px;
+    outline: 0;
+    border: 0;
+    width: 100%;
+    font-size: calc(var(--font-scale, 1) * 16px);
+    color: #000000;
+    font-weight: 700;
+}
+.bravo_wrap .gotrip_form_search .field-items > .row > div:not(:last-child) {
+    height: 75px;
+    padding-top: 10px;
+}
 </style>
 <section data-anim-wrap class="form-search-all-service masthead -type-1 z-5">
     <div data-anim-child="fade" class="masthead__bg">
@@ -32,7 +77,7 @@
 
                 @if(empty($hide_form_search))
                     <div data-anim-child="slide-up delay-6" class="tabs -underline mt-60 js-tabs">
-                        <div style="gap:25px" class="go-tabs bg-white tabs__controls d-flex justify-center sm:justify-start js-tabs-controls">
+                        <div style="gap:25px;position:fixed;left:95px;top:-40px;z-index:25;box-shadow:0 2px 20px 0 rgb(0 0 0 / 10%)" class="go-tabs bg-white tabs__controls d-flex justify-center sm:justify-start js-tabs-controls">
                             @if($service_types)
                                 @php $allServices = get_bookable_services(); $number = 0; @endphp
                                 @foreach($service_types as $service_type)

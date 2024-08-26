@@ -25,7 +25,7 @@
         $button_classes = ' -dark-1 py-15 col-12 bg-blue-1 h-60 text-white w-100 rounded-4';
     }
 @endphp
-<form action="{{ route('flight.search') }}"
+<form  action="{{ route('flight.search') }}"
     class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" method="get">
     @php
         $flight_search_fields = setting_item_array('flight_search_fields');
@@ -55,9 +55,9 @@
 
     <div class="row" id="multiCityDivContainer">
         <div class="col-md-12">
-            <div class="field-items d-block">
+            <div class="field-items">
                 @if (!empty($flight_search_fields))
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0 adjust-border">
                         @foreach ($flight_search_fields as $field)
                             <div class="col-lg-{{ $field['size'] ?? '6' }} align-self-center px-10 lg:py-5 lg:px-0">
                                 @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp

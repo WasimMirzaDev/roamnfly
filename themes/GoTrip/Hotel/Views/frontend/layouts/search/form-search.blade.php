@@ -37,7 +37,7 @@
         <div class="row w-100 m-0">
             @if(!empty($hotel_search_fields))
                 @foreach($hotel_search_fields as $field)
-                    <div class="col-lg-{{ $field['size'] ?? "6" }} align-self-center px-30 lg:py-20 lg:px-0">
+                    <div class="col-lg-{{ $field['size'] ?? "6" }} align-self-start px-30 lg:py-20 lg:px-0">
                         @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                         @switch($field['field'])
                             @case ('service_name') @include('Layout::common.search.fields.service_name') @break

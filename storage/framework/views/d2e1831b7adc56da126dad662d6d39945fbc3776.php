@@ -37,7 +37,7 @@
         <div class="row w-100 m-0">
             <?php if(!empty($hotel_search_fields)): ?>
                 <?php $__currentLoopData = $hotel_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-<?php echo e($field['size'] ?? "6"); ?> align-self-center px-30 lg:py-20 lg:px-0">
+                    <div class="col-lg-<?php echo e($field['size'] ?? "6"); ?> align-self-start px-30 lg:py-20 lg:px-0">
                         <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                         <?php switch($field['field']):
                             case ('service_name'): ?> <?php echo $__env->make('Layout::common.search.fields.service_name', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> <?php break; ?>
