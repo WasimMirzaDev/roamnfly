@@ -30,6 +30,7 @@
                     </div>
                     <div class="col-xl-9 col-lg-8">
                         @include('Flight::frontend.layouts.search.list-item')
+                        
                     </div>
                 </div>
             </div>

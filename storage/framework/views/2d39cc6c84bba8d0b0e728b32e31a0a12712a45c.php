@@ -1,21 +1,34 @@
 <div class="row">
     
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
     <?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $onward): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <?php if($rows->total() > 0): ?>
-    <div class="col-lg-6">
-    <?php $__currentLoopData = $onward['ONWARD']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-lg-12">
-                <?php echo $__env->make('Flight::frontend.layouts.return.search.multi-loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            </div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-    <?php else: ?>
-    <div class="col-lg-12">
-        <?php echo e(__("Flight not found")); ?>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link <?php echo e($index == 0 ? 'active' : ''); ?>" id="home-tab<?php echo e($index); ?>" data-bs-toggle="tab" data-bs-target="#home-tab-pane<?php echo e($index); ?>" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Flight  <?php echo e(1 + $index); ?></button>
+        </li>
 
-    </div>
-<?php endif; ?>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+      </ul>
+
+
+
+      <div class="tab-content" id="myTabContent">
+        <?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $onward): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+        <div class="tab-pane fade show <?php echo e($index == 0 ? 'active' : ''); ?>" id="home-tab-pane<?php echo e($index); ?>" role="tabpanel" aria-labelledby="home-tab<?php echo e($index); ?>" tabindex="0">
+
+            <div class="col-lg-12">
+                <?php $__currentLoopData = $onward['ONWARD']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-12">
+                            <?php echo $__env->make('Flight::frontend.layouts.return.search.multi-loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
+        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+      </div>
+
+
 </div>
 
 <div class="bravo-pagination">

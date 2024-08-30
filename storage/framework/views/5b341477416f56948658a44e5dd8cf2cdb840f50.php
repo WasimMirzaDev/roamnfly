@@ -16,6 +16,18 @@
         $link_location = $row->getDetailUrl();
     }
 ?>
+<style>
+    .citiesCard.-type-1 .citiesCard__image {
+        height:230px;
+        width: 200px;
+    }
+    .citiesCard.-type-1:hover {
+        width: 200px;
+    }
+    .swiper-slide {
+        width:200px !important
+    }
+    </style>
 <div class="swiper-slide">
     <span class="citiesCard -type-1 d-block rounded-4 ">
         <?php if(!empty($link_location)): ?> <a href="<?php echo e($link_location); ?>"> <?php endif; ?>

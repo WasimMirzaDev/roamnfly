@@ -1,3 +1,9 @@
+<style>
+    .ctaCard{
+        width:250px;
+        height:165px;
+    }
+    </style>
 <?php $offer_wrap_class = '';
 if (!empty($style)){
     switch ($style){
@@ -22,19 +28,19 @@ if (!empty($style)){
             <div class="row y-gap-20">
                 <?php $stt = 2; ?>
                 <?php $__currentLoopData = $list_item; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div data-anim="slide-up delay-<?php echo e($stt); ?>" class="<?php echo e(($style ?? '' == 'style1') ? 'col-lg-4 col-sm-6' : 'col-md-6'); ?>">
+                    <div data-anim="slide-up delay-<?php echo e($stt); ?>" class="<?php echo e(($style ?? '' == 'style1') ? 'col-lg-4 col-sm-6' : 'col-md-3'); ?>">
 
-                        <div class="ctaCard -type-1 rounded-4 <?php if(empty($item['offer_overLay'])): ?> -no-overlay <?php endif; ?>">
+                        <div class="ctaCard -type-1 asdsad rounded-4 <?php if(empty($item['offer_overLay'])): ?> -no-overlay <?php endif; ?>">
                             <div class="ctaCard__image ratio <?php echo e(($style ?? '' == 'style1') ? 'ratio-41:35' : 'ratio-63:55'); ?>">
                                 <img class="img-ratio js-lazy" src="#" data-src="<?php echo e(get_file_url($item['background_image'],'full') ?? ""); ?>" alt="image">
                             </div>
 
-                            <div class="ctaCard__content <?php echo e(($style ?? '' == 'style1') ? 'py-50 px-50' : 'py-70 px-70'); ?>  lg:py-30 lg:px-30">
+                            <div class="ctaCard__content <?php echo e(($style ?? '' == 'style1') ? 'py-50 px-50' : 'py-70 px-30'); ?>  lg:py-30 lg:px-30">
 
                                 <?php if(!empty($item['featured_text'])): ?>
                                     <div class="text-15 fw-500 text-white mb-10"><?php echo e($item['featured_text']); ?></div>
                                 <?php endif; ?>
-                                <h4 class="<?php echo e($style ?? '' == 'style1' ? 'text-30 xl:text-24' : 'text-40 lg:text-26'); ?> text-white"><?php echo clean($item['title']); ?></h4>
+                                <h4 class="<?php echo e($style ?? '' == 'style1' ? 'text-30 xl:text-24' : 'text-15 lg:text-26'); ?> text-white"><?php echo clean($item['title']); ?></h4>
 
                                 <div class="d-inline-block mt-30">
                                     <a href="<?php echo e($item['link_more']); ?>" class="button px-48 py-15 -blue-1 -min-180 bg-white text-dark-1"><?php echo e($item['link_title']); ?></a>

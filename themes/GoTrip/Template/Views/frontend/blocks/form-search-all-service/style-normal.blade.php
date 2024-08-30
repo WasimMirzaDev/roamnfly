@@ -18,7 +18,8 @@
 }
 .gotrip_form_search {
     width: 1200px !important;
-    height:315px;
+     /* height:315px; */
+     padding: 20px 0;
     border-radius:15px;
     max-width:1110px;
 }
@@ -36,10 +37,10 @@
     width: 1080px;
     margin: 0 auto;
     position: relative;
-    z-index: 10;
+    /* z-index: 10; */
     border-radius: 8px;
     /* box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%); */
-    padding: 65px 20px 0;
+    padding: 0 20px ;
 }
 .adjust-border{ 
     border:1px solid #e7e7e7;
@@ -77,17 +78,18 @@
 
                 @if(empty($hide_form_search))
                     <div data-anim-child="slide-up delay-6" class="tabs -underline mt-60 js-tabs">
-                        <div style="gap:25px;position:fixed;left:95px;top:-40px;z-index:25;box-shadow:0 2px 20px 0 rgb(0 0 0 / 10%)" class="go-tabs bg-white tabs__controls d-flex justify-center sm:justify-start js-tabs-controls">
+                        <center>
+                        <div style="gap:25px;position:fixed;left:444px;top:-40px;z-index:25; padding:10px 0px; box-shadow:0 2px 20px 0 rgb(0 0 0 / 10%); width:230px;" class="go-tabs bg-white tabs__controls d-flex justify-center sm:justify-start js-tabs-controls">
                             @if($service_types)
                                 @php $allServices = get_bookable_services(); $number = 0; @endphp
-                                @foreach($service_types as $service_type)
+                                @foreach($service_types as $index => $service_type)
                                     @php
                                         if(empty($allServices[$service_type])) continue;
                                         $service = $allServices[$service_type];
                                     @endphp
                                     <div class="" style="width:72px">
                                         <div class="image-wrapper-go">
-                                            <img style="width:52px" src="{{asset('/images/ap.png')}}"/>
+                                            <img style="width:52px" src="{{ $index == 0 ? asset('/images/hotels.png') : asset('/images/ap.png')}}"/>
                                         </div>
                                         <button class="w-100 tabs__button text-15 fw-500 text-dark pb-4 js-tabs-button @if($number==0) is-tab-el-active @endif" data-tab-target=".-tab-item-{{$service_type}}">
                                             {{$service::getModelName()}}
@@ -97,7 +99,7 @@
                                     @php $number++; @endphp
                                 @endforeach
                             @endif
-                                    <div style="width:72px">
+                                    {{-- <div style="width:72px">
                                         <div class="image-wrapper-go">
                                             <img class="" style="width:52px" src="{{asset('/images/ap.png')}}"/>
                                         </div>
@@ -152,9 +154,9 @@
                                         <button disabled class="diabled-tabs">
                                            Travel<br>Insurance
                                         </button>
-                                    </div>
+                                    </div> --}}
                         </div>
-
+                    </center>
                         <div class="tabs__content mt-30 md:mt-20 js-tabs-content">
                             @if($service_types)
                                 @php $number = 0; @endphp

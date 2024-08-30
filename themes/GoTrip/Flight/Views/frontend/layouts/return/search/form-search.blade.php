@@ -48,7 +48,7 @@
         @endif
     </div>
     <div class="button-item">
-        <button class="mainSearch__submit button {{ $button_classes }}" type="submit">
+        <button class="mainSearch__submit button {{ $button_classes }}" type="submit" >
             <i class="icon-search text-20 mr-10"></i>
             <span class="text-search">{{__("Search")}}</span>
         </button>

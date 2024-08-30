@@ -1,3 +1,12 @@
+<style>
+     .js-results{
+        display: block !important;
+    }
+</style>
+
+
+
+
 <?php if(!empty($attr) and !empty($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first())): ?>
     <div class="searchMenu-loc js-form-dd js-liverSearch item">
         <span class="clear-loc absolute bottom-0 text-12"><i class="icon-close"></i></span>

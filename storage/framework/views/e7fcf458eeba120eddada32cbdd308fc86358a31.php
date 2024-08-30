@@ -1,4 +1,11 @@
+<style>
+	.flight-info-box{
+		z-index: 1000 !important;
+		overflow-y: auto !important; 
+	}
+</style>
 <div class="modal fade" id="flightFormBookModalMulti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-body">

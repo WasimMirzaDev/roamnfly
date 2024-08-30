@@ -55,7 +55,37 @@ class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" meth
         console.log(window.initialData);
     </script>
 
-    <div class="row" id="multiCityDivContainer">
+<style>
+
+    .col-lg-2{
+        & button{
+            position: relative;
+    top: 20px;
+    left: 5px;
+    padding: 5px 10px;
+        }
+    }
+
+    .bravo_wrap .gotrip_form_search .field-items:nth-child(1){
+        padding: 65px 20px 20px;
+    }
+    .bravo_wrap .bravo_search_flight .bravo_form_search {
+        display: flex;
+    justify-content: space-between;
+    align-items: start;
+    /* margin-top: 10px !important; */
+    }
+
+</style>
+
+<script>
+  if (window.location.pathname === '/flight') {
+    document.styleSheets[0].addRule('.bravo_wrap .gotrip_form_search .field-items:nth-child(1)', 'padding: 20px 20px 20px !important');
+  }
+</script>
+
+
+    <div class="row w-100" id="multiCityDivContainer">
         <div class="col-md-12">
             <div class="field-items">
                 @if (!empty($flight_search_fields))
@@ -134,7 +164,7 @@ class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" meth
                                 </div>
                             @endif
                         @endforeach
-                        <div class="col-lg-3">
+                        <div class="col-lg-2 m-0 p-0">
                             <button type="button"
                                 class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
@@ -172,7 +202,7 @@ class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" meth
                                 </div>
                             @endif
                         @endforeach
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <button type="button"
                                 class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
@@ -210,7 +240,7 @@ class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" meth
                                 </div>
                             @endif
                         @endforeach
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <button type="button"
                                 class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
@@ -248,7 +278,7 @@ class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" meth
                                 </div>
                             @endif
                         @endforeach
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <button type="button"
                                 class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
@@ -286,7 +316,7 @@ class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" meth
                                 </div>
                             @endif
                         @endforeach
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <button type="button"
                                 class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
