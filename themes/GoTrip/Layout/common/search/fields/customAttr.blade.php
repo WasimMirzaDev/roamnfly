@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
      .js-results{
         display: block !important;
     }
@@ -39,4 +39,4 @@
             </div>
         </div>
     </div>
-@endif
+@endif --}}

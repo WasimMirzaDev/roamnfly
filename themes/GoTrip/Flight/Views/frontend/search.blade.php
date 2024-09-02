@@ -11,20 +11,33 @@
 @section('content')
     <div class="bravo_search_flight">
         <div class="container">
-            <div class=" pt-40 pb-40">
-                <div class="text-center">
+            <div class=" pt-20 pb-15">
+                <div class="text-center d-none">
                     <h1 class="text-30 fw-600">
                         {{setting_item_with_lang("flight_page_search_title")}}
                     </h1>
                 </div>
 
-                @include('Flight::frontend.layouts.search.form-search')
+                @include('Flight::frontend.layouts.search.form-return-search')
 
             </div>
         </div>
-        <div class="layout-pt-md layout-pb-md bg-light-2">
-            <div class="container">
-                <div class="row">
+        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:-1 !important;">
+            <style>
+                .bgGradient {
+    background-image: linear-gradient(0deg, #15457b, #051423);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1 !important;
+    min-height: 160px;
+}
+            </style>
+
+            <div class="container" style="">
+                <div class="row" >
+                    <span class="bgGradient"></span>
                     <div class="col-xl-3 col-lg-4">
                         @include('Flight::frontend.layouts.search.filter-search')
                     </div>

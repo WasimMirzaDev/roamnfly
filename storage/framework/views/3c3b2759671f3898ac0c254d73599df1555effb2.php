@@ -121,7 +121,14 @@ font-size: 17px !important;
     .tabs.-underline .tabs__controls .tabs__button::after{
         background-color: orange;
     }
-
+.button-city-add{
+    background: transparent !important;
+    color: orange;
+    border: 1px solid orange;
+    border-radius: 4px;
+    padding: 20px !important;
+    margin-top: 10px
+}
 </style>
 
 <script>
@@ -132,11 +139,11 @@ font-size: 17px !important;
 </script>
 
 
-    <div class="row w-100" id="multiCityDivContainer">
+    <div class="w-100" id="multiCityDivContainer">
         <div class="col-md-12">
-<?php $attr = "travel-type";
-     $inputName = "travel_type";
-?>
+                <?php $attr = "travel-type";
+                     $inputName = "travel_type";
+                ?>
             <?php if(!empty($attr) and !empty($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first())): ?>
             <div class="searchMenu-loc js-form-dd js-liverSearch item">
                 
@@ -159,7 +166,7 @@ font-size: 17px !important;
                                 <?php $translate = $term->translate(); ?>
                                 <div class=" js-search-option getMultiRow" data-id="<?php echo e($translate->name); ?>">
 <div class="d-flex ms-4" style="justify-content: center;" onclick="document.getElementById('<?php echo e($translate->name); ?>').checked = true;">
-    <input type="radio" id="<?php echo e($translate->name); ?>" class="me-2" name="travel_type" value="<?php echo e($translate->name); ?>">
+    <input type="radio" id="<?php echo e($translate->name); ?>" class="me-2" name="travel_type_extra" value="<?php echo e($translate->name); ?>">
     <label for="<?php echo e($translate->name); ?>" style="white-space: nowrap;" class="js-search-option-target"><?php echo e($translate->name); ?></label>
 </div>
                                 </div>
@@ -210,9 +217,9 @@ font-size: 17px !important;
         </div>
 
         <!-- Repeat for multiCityDiv1 -->
-        <div class="col-md-12 d-none" id="multiCityDiv1">
+        <div class="col-md-12 mt-2 d-none" id="multiCityDiv1" style="border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
             
-            <div class="field-items d-block">
+            <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -240,9 +247,9 @@ font-size: 17px !important;
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-lg-2 m-0 p-0">
+                        <div class="col-lg-3 m-0 p-0">
                             <button type="button"
-                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
+                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity button-city-add">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
                             </button>
                         </div>
@@ -250,9 +257,9 @@ font-size: 17px !important;
                 <?php endif; ?>
             </div>
         </div>
-        <div class="col-md-12 d-none" id="multiCityDiv2">
+        <div class="col-md-12 mt-2 d-none" id="multiCityDiv2" style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
             
-            <div class="field-items d-block">
+            <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -278,9 +285,9 @@ font-size: 17px !important;
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <button type="button"
-                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
+                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity button-city-add">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
                             </button>
                         </div>
@@ -288,9 +295,9 @@ font-size: 17px !important;
                 <?php endif; ?>
             </div>
         </div>
-        <div class="col-md-12 d-none" id="multiCityDiv3">
+        <div class="col-md-12 mt-2 d-none" id="multiCityDiv3" style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
             
-            <div class="field-items d-block">
+            <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -316,9 +323,9 @@ font-size: 17px !important;
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <button type="button"
-                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
+                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity button-city-add">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
                             </button>
                         </div>
@@ -326,9 +333,9 @@ font-size: 17px !important;
                 <?php endif; ?>
             </div>
         </div>
-        <div class="col-md-12 d-none" id="multiCityDiv4">
+        <div class="col-md-12 mt-2 d-none" id="multiCityDiv4" style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
             
-            <div class="field-items d-block">
+            <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -354,9 +361,9 @@ font-size: 17px !important;
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <button type="button"
-                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
+                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity button-city-add">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
                             </button>
                         </div>
@@ -364,9 +371,9 @@ font-size: 17px !important;
                 <?php endif; ?>
             </div>
         </div>
-        <div class="col-md-12 d-none" id="multiCityDiv5">
+        <div class="col-md-12 mt-2 d-none" id="multiCityDiv5" style="    border: 1px solid #e7e7e7; border-radius:10px; margin:0px 31px; width:auto !important;">
             
-            <div class="field-items d-block">
+            <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -392,9 +399,9 @@ font-size: 17px !important;
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-lg-2">
-                            <button type="button"
-                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity">
+                        <div class="col-lg-3">
+                            <button type="button" 
+                                class="button -dark-1 py-15 h-20 col-12 rounded-100 bg-blue-1 text-white addCity button-city-add">
                                 <i class="icon-plus text-15 mr-10"></i> Add Another City
                             </button>
                         </div>

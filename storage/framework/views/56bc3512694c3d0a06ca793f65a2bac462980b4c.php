@@ -10,7 +10,6 @@
                         <?php echo e(__(":count flight found",['count'=>$rows->total()])); ?>
 
                     <?php endif; ?>
-
                 </span>
             </div>
         </div>
