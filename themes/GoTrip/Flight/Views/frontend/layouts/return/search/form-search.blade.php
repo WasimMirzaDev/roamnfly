@@ -23,7 +23,46 @@
         $button_classes = " -dark-1 py-15 col-12 bg-blue-1 h-60 text-white w-100 rounded-4";
     }
 @endphp
-<form action="{{ route("flight.search") }}" class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" method="get">
+
+<Style>
+.bravo_wrap .form-search-all-service .tabs__pane.-tab-item-flight .bravo_form  {
+    max-width: 100% !important;
+    width: 100%;
+}
+    .gotrip_form_search {
+    padding: 6rem 0 !important;
+display: block !important;
+height: auto !important;
+}
+.hotel-heading{
+text-align: center;
+color: #8f8f8f;
+font-weight: 500;
+font-size: 20px;
+}
+.smart-search-location,
+.js-first-date,
+.js-last-date,
+.render .adults,
+.render .children,
+.render{
+font-size: 22px !important; 
+}
+.bravo_wrap .gotrip_form_search .field-items > .row > div{
+padding: 27px 30px 0 !important;
+height: 100% !important;
+
+}
+.field-items {
+height: 120px !important;
+}
+.field-items h4{
+font-size: 17px !important;
+}
+
+</Style>
+
+<form action="{{ route("flight.search") }}" class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" style="width:100% !important;" method="get">
     @php $flight_search_fields = setting_item_array('flight_search_fields');
             $flight_search_fields = array_values(\Illuminate\Support\Arr::sort($flight_search_fields, function ($value) {
                 return $value['position'] ?? 0;
@@ -31,7 +70,7 @@
     @endphp
     <div class="field-items d-block">
         @if(!empty($flight_search_fields))
-            <div class="row w-100 m-0">
+            <div class="row w-100 m-0" style="color: orange; border: 1px solid rgb(196, 196, 196); border-radius: 10px;">
                 @foreach($flight_search_fields as $field)
                     <div class="col-lg-{{ $field['size'] ?? "6" }} align-self-center px-10 lg:py-5 lg:px-0">
                         @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp

@@ -23,7 +23,7 @@
     }
     $search_style = setting_item('hotel_location_search_style',"normal")
 @endphp
-<form action="{{ route("hotel.search") }}" class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" method="get">
+<form action="{{ route("hotel.search") }}" class="gotrip_form_search bravo_form_search bravo_form form {{ $classes }}" style="width:100% !important;" method="get">
     @if( !empty(Request::query('_layout')) )
         <input type="hidden" name="_layout" value="{{Request::query('_layout')}}">
     @endif
@@ -33,8 +33,57 @@
                 return $value['position'] ?? 0;
              }));
     @endphp
+
+
+
+
+<Style>
+
+        .gotrip_form_search {
+        padding: 6rem 0 !important;
+display: block !important;
+height: auto !important;
+    }
+.hotel-heading{
+    text-align: center;
+    color: #8f8f8f;
+    font-weight: 500;
+    font-size: 20px;
+}
+.smart-search-location,
+.js-first-date,
+.js-last-date,
+.render .adults,
+.render .children{
+    font-size: 22px !important; 
+}
+.bravo_wrap .gotrip_form_search .field-items > .row > div{
+    padding: 27px 30px 0 !important;
+    height: 100% !important;
+
+}
+.field-items {
+    height: 120px !important;
+}
+.field-items h4{
+    font-size: 17px !important;
+}
+
+</Style>
+
+
+
+
+
+
+
+
+
+
+
+<h3 class="hotel-heading d-block" >Book Hotels & Homestays In India</h3>
     <div class="field-items">
-        <div class="row w-100 m-0">
+        <div class="row w-100 m-0"  style="color: orange; border: 1px solid rgb(196, 196, 196); border-radius: 10px;">
             @if(!empty($hotel_search_fields))
                 @foreach($hotel_search_fields as $field)
                     <div class="col-lg-{{ $field['size'] ?? "6" }} align-self-start px-30 lg:py-20 lg:px-0">
@@ -54,7 +103,7 @@
     <div class="button-item">
         <button class="mainSearch__submit button {{ $button_classes }}" type="submit">
             <i class="icon-search text-20 mr-10"></i>
-            <span class="text-search">{{__("Search")}}</span>
+            <span class="text-search">{{__("SEARCH")}}</span>
         </button>
     </div>
 </form>

@@ -1,6 +1,6 @@
 <section data-anim-wrap="" class="masthead -type-5 animated bravo-tour-service">
-    <div data-anim-child="fade" class="masthead__bg is-in-view">
-        <img src="<?php echo e(asset('themes/gotrip/images/bg.svg')); ?>" alt="bg">
+<div data-anim-child="fade" class="masthead__bg is-in-view">
+        <img src="{{ asset('/images/bgaeroplane.png') }}" alt="bg">
     </div>
 
     <div class="container">

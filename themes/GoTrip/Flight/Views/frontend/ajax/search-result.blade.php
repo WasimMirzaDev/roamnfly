@@ -3,8 +3,9 @@
         @foreach($rows as $row)
             <div class="col-lg-12">
                 @if (isset($row['onward']))
-                    @include('Flight::frontend.layouts.return.search.loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap'])
+                @include('Flight::frontend.layouts.return.search.loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap'])
                 @else
+                {{-- @php dd($row) @endphp --}}
                     @include('Flight::frontend.layouts.search.loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap'])
                 @endif
             </div>

@@ -3,9 +3,8 @@
     <ul class="nav nav-tabs" id="myTab" role="tablist">
     <?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $onward): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <li class="nav-item" role="presentation">
-          <button class="nav-link <?php echo e($index == 0 ? 'active' : ''); ?>" id="home-tab<?php echo e($index); ?>" data-bs-toggle="tab" data-bs-target="#home-tab-pane<?php echo e($index); ?>" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Flight  <?php echo e(1 + $index); ?></button>
+          <button class="nav-link <?php echo e($index == 0 ? 'active' : ''); ?>" id="home-tab<?php echo e($index); ?>" data-bs-toggle="tab" data-bs-target="#home-tab-pane<?php echo e($index); ?>" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><?php echo e($onward['ONWARD'][0]['sI'][0]['fD']['aI']['name'] .'  Filghts '. count($onward['ONWARD'])); ?></button>
         </li>
-
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </ul>
 

@@ -3,9 +3,8 @@
     <ul class="nav nav-tabs" id="myTab" role="tablist">
     @foreach($rows as $index => $onward)
         <li class="nav-item" role="presentation">
-          <button class="nav-link {{$index == 0 ? 'active' : '' }}" id="home-tab{{$index}}" data-bs-toggle="tab" data-bs-target="#home-tab-pane{{$index}}" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Flight  {{ 1 + $index}}</button>
+          <button class="nav-link {{$index == 0 ? 'active' : '' }}" id="home-tab{{$index}}" data-bs-toggle="tab" data-bs-target="#home-tab-pane{{$index}}" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">{{$onward['ONWARD'][0]['sI'][0]['fD']['aI']['name'] .'  Filghts '. count($onward['ONWARD'])}}</button>
         </li>
-
     @endforeach
       </ul>
 

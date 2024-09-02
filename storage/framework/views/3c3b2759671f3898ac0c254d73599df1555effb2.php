@@ -54,7 +54,50 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
         };
         console.log(window.initialData);
     </script>
+<Style>
+.bravo_wrap .form-search-all-service .tabs__pane.-tab-item-flight .bravo_form  {
+    max-width: 100% !important;
+    width: 100%;
+    padding: 95px 0px 6rem 0px !important;
+}
+    .gotrip_form_search {
+    padding: 6rem 0 !important;
+display: block !important;
+height: auto !important;
+}
+.adjust-border {
+    height: 120px !important;
+}
+.hotel-heading{
+text-align: center;
+color: #8f8f8f;
+font-weight: 500;
+font-size: 20px;
+}
+.smart-search-location,
+.js-first-date,
+.js-last-date,
+.render .adults,
+.render .children,
+.render{
+font-size: 22px !important; 
+}
+.bravo_wrap .gotrip_form_search .field-items > .row > div{
+padding: 27px 30px 0 !important;
+height: 100% !important;
 
+}
+.field-items {
+height: 120px !important;
+
+}
+.field-items h4{
+font-size: 17px !important;
+}
+.field-items .row{
+    height: 100% !important;
+}
+</Style>
 <style>
 
     .col-lg-2{
@@ -66,20 +109,24 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
         }
     }
 
-    .bravo_wrap .gotrip_form_search .field-items:nth-child(1){
+    /* .bravo_wrap .gotrip_form_search .field-items:nth-child(1){
         padding: 65px 20px 20px;
-    }
+    } */
     .bravo_wrap .bravo_search_flight .bravo_form_search {
         display: flex;
     justify-content: space-between;
     align-items: start;
-    /* margin-top: 10px !important; */
+
+    }
+    .tabs.-underline .tabs__controls .tabs__button::after{
+        background-color: orange;
     }
 
 </style>
 
 <script>
   if (window.location.pathname === '/flight') {
+    document.styleSheets[0].addRule('.bravo_wrap .bravo_search_flight .bravo_form_search', 'margin-top: 10px !important;');
     document.styleSheets[0].addRule('.bravo_wrap .gotrip_form_search .field-items:nth-child(1)', 'padding: 20px 20px 20px !important');
   }
 </script>
@@ -87,9 +134,44 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
 
     <div class="row w-100" id="multiCityDivContainer">
         <div class="col-md-12">
+
+            <?php if(!empty($attr) and !empty($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first())): ?>
+            <div class="searchMenu-loc js-form-dd js-liverSearch item">
+                
+                <div data-x-dd-click="searchMenu-loc">
+                    <h4 class="text-15 fw-500 ls-2 lh-16"><?php echo e($attr->name); ?></h4>
+                    <div class="text-15 text-light-1 ls-2 lh-16 smart-search">
+                        <!-- Retrieve value from URL or set to empty -->
+                        <input type="hidden" id="<?php echo e($inputName); ?>" name="<?php echo e($inputName); ?>" class="js-search-get-id" value="<?php echo e(Request::query($inputName) ?? ''); ?>">
+                        <!-- Display selected term name or placeholder -->
+                        <input type="text" autocomplete="off" readonly class="smart-search-location parent_text js-search js-dd-focus" 
+                            placeholder="<?php echo e(__('Select Type')); ?>" 
+                            value="<?php echo e(optional($attr->terms->where('name', Request::query($inputName))->first())->name ?? ''); ?>">
+                    </div>            
+                </div>
+                <div class="searchMenu-loc__field shadow-2">
+                    <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                        <div class="y-gap-5 js-results">
+                            <div class="d-flex ms-4" style="color: black; font-size:18px;">
+                            <?php $__currentLoopData = $attr->terms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $term): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $translate = $term->translate(); ?>
+                                <div class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option getMultiRow" data-id="<?php echo e($translate->name); ?>">
+                                        <div class="d-flex ms-4" style="justify-content: center;">
+                                            <input type="radio" id="one-way" class="me-2" name="travel_type" value="one-way">
+                                            <label for="one-way" style="white-space: nowrap;" class="js-search-option-target"><?php echo e($translate->name); ?></label>
+                                        </div>
+                                </div>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
             <div class="field-items">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0 adjust-border">
+                    <div class="row w-100 m-0 adjust-border" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-lg-<?php echo e($field['size']); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                 <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
@@ -135,10 +217,10 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
 
         <!-- Repeat for multiCityDiv1 -->
         <div class="col-md-12 d-none" id="multiCityDiv1">
-            <hr>
+            
             <div class="field-items d-block">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
                                 <div class="col-lg-<?php echo e($field['size'] ?? '6'); ?> align-self-center px-10 lg:py-5 lg:px-0">
@@ -175,10 +257,10 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
             </div>
         </div>
         <div class="col-md-12 d-none" id="multiCityDiv2">
-            <hr>
+            
             <div class="field-items d-block">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
                                 <div class="col-lg-<?php echo e($field['size'] ?? '6'); ?> align-self-center px-10 lg:py-5 lg:px-0">
@@ -213,10 +295,10 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
             </div>
         </div>
         <div class="col-md-12 d-none" id="multiCityDiv3">
-            <hr>
+            
             <div class="field-items d-block">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
                                 <div class="col-lg-<?php echo e($field['size'] ?? '6'); ?> align-self-center px-10 lg:py-5 lg:px-0">
@@ -251,10 +333,10 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
             </div>
         </div>
         <div class="col-md-12 d-none" id="multiCityDiv4">
-            <hr>
+            
             <div class="field-items d-block">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
                                 <div class="col-lg-<?php echo e($field['size'] ?? '6'); ?> align-self-center px-10 lg:py-5 lg:px-0">
@@ -289,10 +371,10 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
             </div>
         </div>
         <div class="col-md-12 d-none" id="multiCityDiv5">
-            <hr>
+            
             <div class="field-items d-block">
                 <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0">
+                    <div class="row w-100 m-0" style="color: orange;">
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
                                 <div class="col-lg-<?php echo e($field['size'] ?? '6'); ?> align-self-center px-10 lg:py-5 lg:px-0">
@@ -332,7 +414,7 @@ class="gotrip_form_search bravo_form_search bravo_form form <?php echo e($classe
     <div class="button-item">
         <button class="mainSearch__submit button <?php echo e($button_classes); ?>" id="flightSearch" type="submit">
             <i class="icon-search text-20 mr-10"></i>
-            <span class="text-search"><?php echo e(__('Search')); ?></span>
+            <span class="text-search"><?php echo e(__('SEARCH')); ?></span>
         </button>
     </div>
     <input type="hidden" id="cityCount" value="1">

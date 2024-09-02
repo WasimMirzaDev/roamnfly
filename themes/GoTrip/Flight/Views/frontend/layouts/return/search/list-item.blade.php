@@ -8,7 +8,6 @@
                     @else
                         {{ __(":count flight found",['count'=>$rows->total()]) }}
                     @endif
-
                 </span>
             </div>
         </div>
