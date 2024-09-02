@@ -134,32 +134,34 @@ font-size: 17px !important;
 
     <div class="row w-100" id="multiCityDivContainer">
         <div class="col-md-12">
-
+@php $attr = "travel-type";
+     $inputName = "travel_type";
+@endphp
             @if(!empty($attr) and !empty($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first()))
             <div class="searchMenu-loc js-form-dd js-liverSearch item">
                 {{-- <span class="clear-loc absolute bottom-0 text-12"><i class="icon-close"></i></span> --}}
-                <div data-x-dd-click="searchMenu-loc">
+                <div data-x-dd-click="searchMenu-loc"  class="d-none">
                     <h4 class="text-15 fw-500 ls-2 lh-16">{{ $attr->name }}</h4>
                     <div class="text-15 text-light-1 ls-2 lh-16 smart-search">
                         <!-- Retrieve value from URL or set to empty -->
                         <input type="hidden" id="{{ $inputName }}" name="{{ $inputName }}" class="js-search-get-id" value="{{ Request::query($inputName) ?? '' }}">
                         <!-- Display selected term name or placeholder -->
-                        <input type="text" autocomplete="off" readonly class="smart-search-location parent_text js-search js-dd-focus" 
+                        <input type="text"  autocomplete="off" readonly class="smart-search-location parent_text js-search js-dd-focus" 
                             placeholder="{{ __('Select Type') }}" 
                             value="{{ optional($attr->terms->where('name', Request::query($inputName))->first())->name ?? '' }}">
                     </div>            
                 </div>
-                <div class="searchMenu-loc__field shadow-2">
-                    <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                <div data-x-dd="searchMenu-loc">
+                    <div>
                         <div class="y-gap-5 js-results">
                             <div class="d-flex ms-4" style="color: black; font-size:18px;">
                             @foreach($attr->terms as $term)
                                 @php $translate = $term->translate(); @endphp
-                                <div class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option getMultiRow" data-id="{{ $translate->name }}">
-                                        <div class="d-flex ms-4" style="justify-content: center;">
-                                            <input type="radio" id="one-way" class="me-2" name="travel_type" value="one-way">
-                                            <label for="one-way" style="white-space: nowrap;" class="js-search-option-target">{{ $translate->name }}</label>
-                                        </div>
+                                <div class=" js-search-option getMultiRow" data-id="{{ $translate->name }}">
+<div class="d-flex ms-4" style="justify-content: center;" onclick="document.getElementById('{{$translate->name}}').checked = true;">
+    <input type="radio" id="{{$translate->name}}" class="me-2" name="travel_type" value="{{$translate->name}}">
+    <label for="{{$translate->name}}" style="white-space: nowrap;" class="js-search-option-target">{{ $translate->name }}</label>
+</div>
                                 </div>
                             @endforeach
                             </div>
@@ -167,7 +169,7 @@ font-size: 17px !important;
                     </div>
                 </div>
             </div>
-        @endif
+            @endif
 {{-- 
 <div class="d-flex ms-4" style="color: black; font-size:18px;">
     <div class="d-flex ms-4" style="justify-content: center;">
@@ -211,14 +213,6 @@ font-size: 17px !important;
                                         @include('Layout::common.search.fields.airport', [
                                             'inputName' => 'to_where',
                                             'toWhere' => $toWhere,
-                                        ])
-                                    @break
-
-                                    @case ('type')
-                                        @include('Layout::common.search.fields.customAttr', [
-                                            'attr' => 'travel-type',
-                                            'inputName' => 'travel_type',
-                                            'travelType' => $travelType,
                                         ])
                                     @break
                                 @endswitch

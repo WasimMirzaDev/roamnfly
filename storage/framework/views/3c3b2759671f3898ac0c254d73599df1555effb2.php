@@ -134,32 +134,34 @@ font-size: 17px !important;
 
     <div class="row w-100" id="multiCityDivContainer">
         <div class="col-md-12">
-
+<?php $attr = "travel-type";
+     $inputName = "travel_type";
+?>
             <?php if(!empty($attr) and !empty($attr = \Modules\Core\Models\Attributes::where('slug', $attr)->first())): ?>
             <div class="searchMenu-loc js-form-dd js-liverSearch item">
                 
-                <div data-x-dd-click="searchMenu-loc">
+                <div data-x-dd-click="searchMenu-loc"  class="d-none">
                     <h4 class="text-15 fw-500 ls-2 lh-16"><?php echo e($attr->name); ?></h4>
                     <div class="text-15 text-light-1 ls-2 lh-16 smart-search">
                         <!-- Retrieve value from URL or set to empty -->
                         <input type="hidden" id="<?php echo e($inputName); ?>" name="<?php echo e($inputName); ?>" class="js-search-get-id" value="<?php echo e(Request::query($inputName) ?? ''); ?>">
                         <!-- Display selected term name or placeholder -->
-                        <input type="text" autocomplete="off" readonly class="smart-search-location parent_text js-search js-dd-focus" 
+                        <input type="text"  autocomplete="off" readonly class="smart-search-location parent_text js-search js-dd-focus" 
                             placeholder="<?php echo e(__('Select Type')); ?>" 
                             value="<?php echo e(optional($attr->terms->where('name', Request::query($inputName))->first())->name ?? ''); ?>">
                     </div>            
                 </div>
-                <div class="searchMenu-loc__field shadow-2">
-                    <div class="bg-white px-30 py-30 sm:px-0 sm:py-15 rounded-4">
+                <div data-x-dd="searchMenu-loc">
+                    <div>
                         <div class="y-gap-5 js-results">
                             <div class="d-flex ms-4" style="color: black; font-size:18px;">
                             <?php $__currentLoopData = $attr->terms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $term): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php $translate = $term->translate(); ?>
-                                <div class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option getMultiRow" data-id="<?php echo e($translate->name); ?>">
-                                        <div class="d-flex ms-4" style="justify-content: center;">
-                                            <input type="radio" id="one-way" class="me-2" name="travel_type" value="one-way">
-                                            <label for="one-way" style="white-space: nowrap;" class="js-search-option-target"><?php echo e($translate->name); ?></label>
-                                        </div>
+                                <div class=" js-search-option getMultiRow" data-id="<?php echo e($translate->name); ?>">
+<div class="d-flex ms-4" style="justify-content: center;" onclick="document.getElementById('<?php echo e($translate->name); ?>').checked = true;">
+    <input type="radio" id="<?php echo e($translate->name); ?>" class="me-2" name="travel_type" value="<?php echo e($translate->name); ?>">
+    <label for="<?php echo e($translate->name); ?>" style="white-space: nowrap;" class="js-search-option-target"><?php echo e($translate->name); ?></label>
+</div>
                                 </div>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
@@ -167,7 +169,7 @@ font-size: 17px !important;
                     </div>
                 </div>
             </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
             <div class="field-items">
                 <?php if(!empty($flight_search_fields)): ?>
@@ -197,14 +199,6 @@ font-size: 17px !important;
                                         <?php echo $__env->make('Layout::common.search.fields.airport', [
                                             'inputName' => 'to_where',
                                             'toWhere' => $toWhere,
-                                        ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    <?php break; ?>
-
-                                    <?php case ('type'): ?>
-                                        <?php echo $__env->make('Layout::common.search.fields.customAttr', [
-                                            'attr' => 'travel-type',
-                                            'inputName' => 'travel_type',
-                                            'travelType' => $travelType,
                                         ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                     <?php break; ?>
                                 <?php endswitch; ?>
