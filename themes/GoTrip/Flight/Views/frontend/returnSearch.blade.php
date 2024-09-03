@@ -33,7 +33,7 @@ z-index: -1 !important;
 min-height: 160px;
 }
         </style>
-        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:-1 !important;">
+        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:2 !important;">
             <div class="container">
                 <div class="row">
                     <span class="bgGradient"></span>

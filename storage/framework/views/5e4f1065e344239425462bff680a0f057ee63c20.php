@@ -106,6 +106,12 @@ font-size: 14px !important;
 .header-row{
     
 }
+.check-in-out-render{
+    & span{
+
+        font-size: 15px !important;
+    }
+}
 </Style>
 <style>
 
@@ -153,7 +159,8 @@ border: none;
         color: white;
         gap: 10px !important;
         .col-lg-2,
-        .col-lg-3{
+        .col-lg-3,
+        .col-lg-1{
         background: hsla(0, 0%, 100%, .1) !important;
         border-radius: 4px !important;
         }
@@ -177,13 +184,17 @@ border: none;
         border-radius: 4px ;
     }
 }
+.js-search::placeholder{
+    color: #d1d1d1 !important;
+}
+
 #multiCityDiv1,
 #multiCityDiv2,
 #multiCityDiv3,
 #multiCityDiv4,
 #multiCityDiv5{
     margin: 0 !important;
-    max-width: 1140px !important;
+    max-width: 1181px !important;
     border: none !important;
 }
 .button-city-add{
@@ -197,6 +208,13 @@ border: none;
     }
 }
 
+.last-tab{
+    position: fixed !important;
+    color: black;
+    .row{
+        color: orange;
+    }
+}
 </style>
 
 <script>
@@ -219,11 +237,12 @@ border: none;
 
 
 
-            <div class="field-items">
-                <?php if(!empty($flight_search_fields)): ?>
-                    <div class="row w-100 m-0 adjust-border header-row" style="color: orange;">
+            <div class="row field-items">
+                <div class="col-lg-11">
+                    <?php if(!empty($flight_search_fields)): ?>
+                    <div class="row w-100 m-0 adjust-border header-row" style="color: orange; ">
                         <style>
-                            .js-results{
+                        .js-results{
                                display: block !important;
                            }
                        </style>
@@ -268,7 +287,7 @@ border: none;
                        <?php endif; ?>
                     </div>
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-lg-<?php echo e($index == 0 || $index == 1 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0" style="<?php echo e($index == 3 ? 'white-space:nowrap;': ''); ?>">
+                            <div class="col-lg-<?php echo e($index == 1 ||  $index == 0 || $index == 3 || $index == 4 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0" style="<?php echo e($index == 3 ? 'white-space:nowrap;': ''); ?>">
                                 <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
 
 
@@ -303,11 +322,15 @@ border: none;
 
                     </div>
                 <?php endif; ?>
-                <div class="button-item">
-                    <button class="mainSearch__submit button <?php echo e($button_classes); ?>" id="flightSearch" type="submit">
-                        <i class="icon-search text-20 mr-10"></i>
-                        <span class="text-search"><?php echo e(__('SEARCH')); ?></span>
-                    </button>
+                </div>
+             <div class="col-lg-1 p-0">
+
+                 <div class="button-item">
+                     <button class="mainSearch__submit button <?php echo e($button_classes); ?>" id="flightSearch" type="submit">
+                         <i class="icon-search text-20 mr-10"></i>
+                         <span class="text-search"><?php echo e(__('SEARCH')); ?></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -323,7 +346,7 @@ border: none;
                         </div>
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
-                                <div class="col-lg-<?php echo e($index == 0 || $index == 1 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-<?php echo e($index == 1 ||  $index == 0 || $index == 3 || $index == 4 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                     <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                                     <?php switch($field['field']):
                                         case ('date'): ?>
@@ -361,12 +384,12 @@ border: none;
             <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
-                        <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
+                        <div class="col-lg-1 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
                             <h4>Trip 3</h4>
                         </div>
                     <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
-                                <div class="col-lg-<?php echo e($index == 0 || $index == 1 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-<?php echo e($index == 4 || $index == 2 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                     <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                                     <?php switch($field['field']):
                                     case ('date'): ?>
@@ -402,12 +425,12 @@ border: none;
             <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
-                        <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
+                        <div class="col-lg-1 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
                             <h4>Trip 3</h4>
                         </div>
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
-                                <div class="col-lg-<?php echo e($index == 0 || $index == 1 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-<?php echo e($index == 4 || $index == 2 || $index == 3  ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                     <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                                     <?php switch($field['field']):
                                     case ('date'): ?>
@@ -443,12 +466,12 @@ border: none;
             <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
-                        <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
+                        <div class="col-lg-1 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
                             <h4>Trip 4</h4>
                         </div>
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
-                                <div class="col-lg-<?php echo e($index == 0 || $index == 1 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-<?php echo e($index == 4 || $index == 2 || $index == 3  ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                     <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                                     <?php switch($field['field']):
                                     case ('date'): ?>
@@ -484,12 +507,12 @@ border: none;
             <div class="field-items d-block" style="padding: 0px; margin:0px !important;">
                 <?php if(!empty($flight_search_fields)): ?>
                     <div class="row w-100 m-0" style="color: orange;">
-                        <div class="col-lg-2 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
+                        <div class="col-lg-1 align-self-center px-10 lg:py-5 lg:px-0 trip-heading">
                             <h4>Trip 5</h4>
                         </div>
                         <?php $__currentLoopData = $flight_search_fields; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index=> $field): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($field['field'] != 'travel_type' && $field['field'] != 'seat_type'): ?>
-                                <div class="col-lg-<?php echo e($index == 0 || $index == 1 || $index == 3 ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-<?php echo e($index == 4 || $index == 2 || $index == 3  ? '2':'3'); ?> align-self-center px-10 lg:py-5 lg:px-0">
                                     <?php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" ?>
                                     <?php switch($field['field']):
                                     case ('date'): ?>

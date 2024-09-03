@@ -265,6 +265,8 @@
                         if (json.url) {
                             window.location.href = json.url;
                         }
+
+                        
                         if (json.errors && typeof json.errors == 'object') {
                             var html = '';
                             for (var i in json.errors) {

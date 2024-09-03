@@ -23,7 +23,7 @@
 
             </div>
         </div>
-        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:-1 !important;">
+        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:2 !important;">
             <style>
                 .bgGradient {
     background-image: linear-gradient(0deg, #15457b, #051423);

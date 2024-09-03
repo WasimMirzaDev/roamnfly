@@ -106,6 +106,12 @@ font-size: 14px !important;
 .header-row{
     
 }
+.check-in-out-render{
+    & span{
+
+        font-size: 15px !important;
+    }
+}
 </Style>
 <style>
 
@@ -153,7 +159,8 @@ border: none;
         color: white;
         gap: 10px !important;
         .col-lg-2,
-        .col-lg-3{
+        .col-lg-3,
+        .col-lg-1{
         background: hsla(0, 0%, 100%, .1) !important;
         border-radius: 4px !important;
         }
@@ -177,13 +184,17 @@ border: none;
         border-radius: 4px ;
     }
 }
+.js-search::placeholder{
+    color: #d1d1d1 !important;
+}
+
 #multiCityDiv1,
 #multiCityDiv2,
 #multiCityDiv3,
 #multiCityDiv4,
 #multiCityDiv5{
     margin: 0 !important;
-    max-width: 1140px !important;
+    max-width: 1181px !important;
     border: none !important;
 }
 .button-city-add{
@@ -197,6 +208,13 @@ border: none;
     }
 }
 
+.last-tab{
+    position: fixed !important;
+    color: black;
+    .row{
+        color: orange;
+    }
+}
 </style>
 
 <script>
@@ -265,11 +283,12 @@ border: none;
         <label for="multi-city" style="white-space: nowrap;">Multi City</label>
     </div>
 </div> --}}
-            <div class="field-items">
-                @if (!empty($flight_search_fields))
-                    <div class="row w-100 m-0 adjust-border header-row" style="color: orange;">
+            <div class="row field-items">
+                <div class="col-lg-11">
+                    @if (!empty($flight_search_fields))
+                    <div class="row w-100 m-0 adjust-border header-row" style="color: orange; ">
                         <style>
-                            .js-results{
+                        .js-results{
                                display: block !important;
                            }
                        </style>
@@ -314,7 +333,7 @@ border: none;
                        @endif
                     </div>
                         @foreach ($flight_search_fields as $index => $field)
-                            <div class="col-lg-{{ $index == 0 || $index == 1 || $index == 3 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0" style="{{$index == 3 ? 'white-space:nowrap;': ''}}">
+                            <div class="col-lg-{{ $index == 1 ||  $index == 0 || $index == 3 || $index == 4 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0" style="{{$index == 3 ? 'white-space:nowrap;': ''}}">
                                 @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
 
 
@@ -349,11 +368,15 @@ border: none;
 
                     </div>
                 @endif
-                <div class="button-item">
-                    <button class="mainSearch__submit button {{ $button_classes }}" id="flightSearch" type="submit">
-                        <i class="icon-search text-20 mr-10"></i>
-                        <span class="text-search">{{ __('SEARCH') }}</span>
-                    </button>
+                </div>
+             <div class="col-lg-1 p-0">
+
+                 <div class="button-item">
+                     <button class="mainSearch__submit button {{ $button_classes }}" id="flightSearch" type="submit">
+                         <i class="icon-search text-20 mr-10"></i>
+                         <span class="text-search">{{ __('SEARCH') }}</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -369,7 +392,7 @@ border: none;
                         </div>
                         @foreach ($flight_search_fields as $index => $field)
                             @if ($field['field'] != 'travel_type' && $field['field'] != 'seat_type')
-                                <div class="col-lg-{{ $index == 0 || $index == 1 || $index == 3 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-{{  $index == 1 ||  $index == 0 || $index == 3 || $index == 4 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
                                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                                     @switch($field['field'])
                                         @case ('date')
@@ -412,7 +435,7 @@ border: none;
                         </div>
                     @foreach ($flight_search_fields as $index => $field)
                             @if ($field['field'] != 'travel_type' && $field['field'] != 'seat_type')
-                                <div class="col-lg-{{ $index == 0 || $index == 1 || $index == 3 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-{{ $index == 1 ||  $index == 0 || $index == 3 || $index == 4 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
                                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                                     @switch($field['field'])
                                     @case ('date')
@@ -453,7 +476,7 @@ border: none;
                         </div>
                         @foreach ($flight_search_fields as $index => $field)
                             @if ($field['field'] != 'travel_type' && $field['field'] != 'seat_type')
-                                <div class="col-lg-{{ $index == 0 || $index == 1 || $index == 3 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-{{ $index == 1 ||  $index == 0 || $index == 3 || $index == 4  ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
                                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                                     @switch($field['field'])
                                     @case ('date')
@@ -494,7 +517,7 @@ border: none;
                         </div>
                         @foreach ($flight_search_fields as $index => $field)
                             @if ($field['field'] != 'travel_type' && $field['field'] != 'seat_type')
-                                <div class="col-lg-{{ $index == 0 || $index == 1 || $index == 3 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-{{  $index == 1 ||  $index == 0 || $index == 3 || $index == 4  ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
                                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                                     @switch($field['field'])
                                     @case ('date')
@@ -535,7 +558,7 @@ border: none;
                         </div>
                         @foreach ($flight_search_fields as $index=> $field)
                             @if ($field['field'] != 'travel_type' && $field['field'] != 'seat_type')
-                                <div class="col-lg-{{ $index == 0 || $index == 1 || $index == 3 ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
+                                <div class="col-lg-{{  $index == 1 ||  $index == 0 || $index == 3 || $index == 4  ? '2':'3' }} align-self-center px-10 lg:py-5 lg:px-0">
                                     @php $field['title'] = $field['title_'.app()->getLocale()] ?? $field['title'] ?? "" @endphp
                                     @switch($field['field'])
                                     @case ('date')

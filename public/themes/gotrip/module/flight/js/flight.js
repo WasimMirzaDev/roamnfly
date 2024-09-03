@@ -1465,8 +1465,8 @@
             this.adults = window.initialData.adults || 0;
             this.children = window.initialData.children || 0;
             this.infants = window.initialData.infants || 0;
-            this.from_where = window.initialData.from_where || 0;
-            this.to_where = window.initialData.from_where || 0;
+            this.from_where = window.initialData.from_where.split('|').pop().trim() || 0;
+            this.to_where = window.initialData.to_where.split('|').pop().trim() || 0;
         }
     });
 

@@ -1,7 +1,7 @@
 <?php
 $minValue = 0;
 ?>
-<div class="searchMenu-guests js-form-dd form-select-seat-type item">
+<div class="clicked-class searchMenu-guests js-form-dd form-select-seat-type item">
     <div data-x-dd-click="searchMenu-guests" class="overflow-hidden seat-input">
         <h4 class="text-15 fw-500 ls-2 lh-16">{{ $field['title'] }}</h4>
 
@@ -18,8 +18,8 @@ $minValue = 0;
             </div>
         </div>
     </div>
-    <div class="searchMenu-guests__field select-seat-type-dropdown shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
-        <div class="bg-white px-30 py-30 rounded-4">
+    <div class=" searchMenu-guests__field select-seat-type-dropdown shadow-2" data-x-dd="searchMenu-guests" data-x-dd-toggle="-is-active">
+        <div class="bg-white px-30 py-30 rounded-4 last-tab" >
             <div class="row y-gap-10 justify-between items-center">
                 {{-- ADULTS --}}
                 <div class="col-auto">

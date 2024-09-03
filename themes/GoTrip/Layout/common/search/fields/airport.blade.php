@@ -20,11 +20,14 @@
 .hide-important {
     display: none !important;
 }
+.no-scroll{
+    overflow: hidden
+}
 
 </style>
 
 @if($airports = \Modules\Flight\Models\Airport::where('status', 'publish')->get())
-<div class="searchMenu-loc js-form-dd js-liverSearch item">
+<div class="searchMenu-loc clicked-class js-form-dd js-liverSearch item">
     <span class="clear-loc absolute bottom-0 text-12"><i class="icon-close"></i></span>
     <div data-x-dd-click="searchMenu-loc">
         <h4 class="text-15 fw-500 ls-2 lh-16">{{ __(ucwords(str_replace('_', ' ', $inputName))) }}</h4>
@@ -40,7 +43,7 @@
             <input type="text" autocomplete="off" class="react-autosuggest__input" placeholder="Search Airports" title="Type to search for airports">
             <div class="y-gap-5 js-results">
                 @foreach($airports as $term)
-                    <div class="-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option" data-id="{{ $term->code }}">
+                    <div class="-link d-block col-12 text-left rounded-4 px-20 py-15 remove-scroll js-search-option" data-id="{{ $term->code }}">
                         <div class="d-flex align-items-center">
                             <div class="fa fa-plane text-light-1 text-20 pt-4"></div>
                             <div class="ml-10">
@@ -92,6 +95,33 @@ $(document).ready(function () {
     });
 
 });
+$(document).ready(function () {
+    // When searchMenu-loc is clicked, add the no-scroll class to the body
+    $('.clicked-class').on('click', function (e) {
+        e.stopPropagation(); // Prevent event bubbling
+        $('body').addClass('no-scroll');
+    });
+
+    // When remove-scroll is clicked, remove the no-scroll class from the body
+    $('.remove-scroll').on('click', function (e) {
+        e.stopPropagation();
+        $('body').removeClass('no-scroll');
+    });
+
+    // Click outside to close the menu and re-enable scrolling
+    $(document).on('mousedown', function (e) {
+        // Check if the clicked element is not within .searchMenu-loc or .js-popup-window
+        if (!$(e.target).closest('.clicked-class, .js-popup-window').length) {
+            $('body').removeClass('no-scroll'); // Remove no-scroll class from body
+        }
+    });
+
+    // // Prevent propagation within the pop-up window
+    // $('.js-popup-window').on('click', function (e) {
+    //     e.stopPropagation(); // Prevent closing when clicking inside the pop-up
+    // });
+});
+
 
 </script>
 

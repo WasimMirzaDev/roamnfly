@@ -1,3 +1,5 @@
+
+
 <div class="row">
     
     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -8,14 +10,21 @@
     @endforeach
       </ul>
 
+      {{-- <div class="col-lg-12 "> --}}
 
 
+
+        {{-- @include('Flight::frontend.layouts.return.search.multi-loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap']) --}}
+
+        
+    {{-- </div> --}}
+   
       <div class="tab-content" id="myTabContent">
         @foreach($rows as $index => $onward)
 
         <div class="tab-pane fade show {{$index == 0 ? 'active' : '' }}" id="home-tab-pane{{$index}}" role="tabpanel" aria-labelledby="home-tab{{$index}}" tabindex="0">
 
-            <div class="col-lg-12">
+            <div class="col-lg-12 custom-cards">
                 @foreach($onward['ONWARD'] as $row)
                         <div class="col-lg-12">
                             @include('Flight::frontend.layouts.return.search.multi-loop-grid',['wrap_class'=>'item-loop-wrap inner-loop-wrap'])

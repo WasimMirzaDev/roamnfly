@@ -11,21 +11,33 @@
 <?php $__env->startSection('content'); ?>
     <div class="bravo_search_flight">
         <div class="container">
-            <div class=" pt-40 pb-40">
-                <div class="text-center">
+            <div class=" pt-20 pb-15">
+                <div class=" d-none text-center">
                     <h1 class="text-30 fw-600">
                         <?php echo e(setting_item_with_lang("flight_page_search_title")); ?>
 
                     </h1>
                 </div>
 
-                <?php echo $__env->make('Flight::frontend.layouts.search.form-search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make('Flight::frontend.layouts.search.form-return-search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             </div>
         </div>
-        <div class="layout-pt-md layout-pb-md bg-light-2">
+        <style>
+            .bgGradient {
+background-image: linear-gradient(0deg, #15457b, #051423);
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: -1 !important;
+min-height: 160px;
+}
+        </style>
+        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:2 !important;">
             <div class="container">
                 <div class="row">
+                    <span class="bgGradient"></span>
                     <div class="col-xl-3 col-lg-4">
                         <?php echo $__env->make('Flight::frontend.layouts.search.filter-search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>

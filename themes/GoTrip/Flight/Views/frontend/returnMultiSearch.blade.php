@@ -3,6 +3,10 @@
     <link href="{{ asset('dist/frontend/module/flight/css/flight.css?_ver='.config('app.asset_version')) }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset("libs/ion_rangeslider/css/ion.rangeSlider.min.css") }}"/>
     <style>
+        /* .container{
+            max-width: 1400px;
+            margin: 0 auto;
+        } */
         .bravo_wrap .bravo_search_flight .bravo_form_search{
             margin-bottom: 0px;
         }
@@ -33,10 +37,10 @@ z-index: -1 !important;
 min-height: 160px;
 }
         </style>
-        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:-1 !important;">
+        <div class="layout-pt-md layout-pb-md bg-light-2" style="position: relative; z-index:2 !important;">
             <div class="container">
                 <div class="row">
-                    {{-- <span class="bgGradient"></span> --}}
+                    <span class="bgGradient"></span>
                     <div class="col-xl-3 col-lg-4">
                         @include('Flight::frontend.layouts.search.filter-search')
                     </div>
