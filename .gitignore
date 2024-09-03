@@ -5,11 +5,11 @@ public/dist/admin
 /public/hot
 /public/storage
 /public/uploads/0000
-/storage/*.key
-storage/*
-!storage/app/public/
-storage/app/public/*
-!storage/app/public/demo/
+# /storage/*.key
+/storage
+# !storage/app/public/
+# storage/app/public/*
+# !storage/app/public/demo/
 /vendor
 /.idea/*
 !.idea/codeStyles/*
@@ -25,7 +25,7 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.vscode
-storage/bc.php
-storage/pro.php
-storage/installed
+# storage/bc.php
+# storage/pro.php
+# storage/installed
 public/themes/*/dist
